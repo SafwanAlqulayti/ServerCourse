@@ -20,7 +20,7 @@ mongoose.connection.once('open', () => {
 
 app.use('/courses' , coursesRoute)
 app.use('/users' , userRoute)
-app.use('/uploads', express.static('uploads'))
+// app.use('/uploads', express.static('uploads'))
 // app.use('/course/post' ,()=>{
 //     console.log("post is work")
 // })

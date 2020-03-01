@@ -36,7 +36,7 @@ router.post('/',(req,res)=>{// sign up
                 img: req.body.img
                 
         }).then((newuser)=> {
-            res.json({msg:"User has created" ,newuser})
+          res.json({msg:"User has been created" ,newuser})
             console.log("saved")
         })
     })
@@ -54,8 +54,8 @@ router.post('/login',  async(req,res)=>{
     const user =  await User.findOne({username: req.body.username })
     if(user == null){
         res.status(400).send({msg: "The user cant be found"})
-
     }
+
     try{
 // compere the hashed password  , hash the password and then compare
       if(await bcrypt.compare(req.body.password , user.password)){
@@ -68,7 +68,11 @@ router.post('/login',  async(req,res)=>{
         //   console.log(token)ç
           
           res.status(200).json({ token:token ,user})
+          console.log("working2")
+
        }else{
+        console.log("not allowed")
+
           res.send("not allowed")
       }
     }catch{
