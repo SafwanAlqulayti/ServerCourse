@@ -4,8 +4,14 @@ const mongoose = require('mongoose');
 const coursesRoute = require('./routes/courses')
 const userRoute = require('./routes/users')
 const imageRoute = require('./routes/image')
-
+const  path = require("path");
 const cors= require('cors');
+app.use(express.static(path.join(__dirname, 'build')));
+
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 //fix cors problem
@@ -22,6 +28,7 @@ app.use(express.json());
 //       }
 //   }
 //   );
+
 const db = require("./config/db")
  
 mongoose.connect(db ,{useNewUrlParser:true});
