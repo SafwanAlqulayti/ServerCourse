@@ -6,7 +6,7 @@ const mongooseBaseName = 'courseExam'
 // Create the MongoDB URI for Development and Test
 const database = {
   development: `mongodb://localhost/${mongooseBaseName}`,
-  test: `mongodb://safwanheroku:Ss0560054277@ds159371.mlab.com:59371/heroku_49v13xht`
+  test: `mongodb://<safwanheroku>:<Ss0560054277>@ds159371.mlab.com:59371/heroku_49v13xht`
 }
 
 // Identify if development environment is Test or Development
