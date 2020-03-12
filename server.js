@@ -9,7 +9,6 @@ const cors= require('cors');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 //fix cors problem
-app.use(cors());
 // mongoose.connect('mongodb://localhost:27017/courseExam', { useNewUrlParser: true });
 // mongoose.connection.once('open', () => {
 //   console.log('connected to mongo');
@@ -52,7 +51,10 @@ app.use('/image' , imageRoute)
 
 
 //port
-const port = 7000
+const port = process.env.PORT ||7000
+
+app.use(cors({origin: process.env.CLIENT_ORIGIN || "`http://localhost:3000"}));
+
 app.listen(port, () => {
     console.log('listening ' + port);
 });
