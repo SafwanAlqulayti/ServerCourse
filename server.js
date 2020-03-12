@@ -10,12 +10,25 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 //fix cors problem
 app.use(cors());
-mongoose.connect('mongodb://localhost:27017/courseExam', { useNewUrlParser: true });
-mongoose.connection.once('open', () => {
-  console.log('connected to mongo');
-});
-
-
+// mongoose.connect('mongodb://localhost:27017/courseExam', { useNewUrlParser: true });
+// mongoose.connection.once('open', () => {
+//   console.log('connected to mongo');
+// });
+// mongoose.connect('mongodb://<safwanheroku>:<Ss0560054277>@ds159371.mlab.com:59371/heroku_49v13xht', { useNewUrlParser: true },function(err){
+   
+//       if(err) {
+//           console.log('Some problem with the connection ' +err);
+//       } else {
+//           console.log('The Mongoose connection is ready');
+//       }
+//   }
+//   );
+const db = require("./config/db")
+ 
+mongoose.connect(db ,{useNewUrlParser:true});
+mongoose.connection.once('open',function(){
+  console.log("connected to mongo")
+})
 //app.use() midle were to chech the user loging status
 
 app.use('/courses' , coursesRoute)
