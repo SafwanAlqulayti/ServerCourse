@@ -60,7 +60,7 @@ app.use('/image' , imageRoute)
 //port
 const port = process.env.PORT ||7000
 
-app.use(cors({origin: process.env.CLIENT_ORIGIN || "`http://localhost:3000"}));
+app.use(cors({origin: process.env.CLIENT_ORIGIN || "http://localhost:3000"}));
 
 app.listen(port, () => {
     console.log('listening ' + port);
