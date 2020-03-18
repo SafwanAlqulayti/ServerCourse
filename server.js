@@ -7,7 +7,9 @@ const imageRoute = require('./routes/image')
 const  path = require("path");
 const cors= require('cors');
 app.use(express.static(path.join(__dirname, 'build')));
-
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'));
+}
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
