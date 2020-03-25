@@ -12,6 +12,11 @@ const userRoute = require('./routes/users')
 const imageRoute = require('./routes/image')
 const  path = require("path");
 
+
+app.use('/courses' , coursesRoute)
+app.use('/users' , userRoute)
+ 
+app.use('/image' , imageRoute)
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));
 }
@@ -44,10 +49,6 @@ const uri = process.env.ATLAS_URI;
 
 //app.use() midle were to chech the user loging status
 
-app.use('/courses' , coursesRoute)
-app.use('/users' , userRoute)
- 
-app.use('/image' , imageRoute)
 
 
 app.use(cors({origin: process.env.CLIENT_ORIGIN || "http://localhost:3000"}));
