@@ -10,9 +10,9 @@ const coursesRoute = require('./routes/courses')
 const userRoute = require('./routes/users')
 const imageRoute = require('./routes/image')
 const  path = require("path");
+app.use(express.json());
 
 app.use(cors())
-app.use(express.json());
 app.use('/courses' , coursesRoute)
 app.use('/users' , userRoute)
  
