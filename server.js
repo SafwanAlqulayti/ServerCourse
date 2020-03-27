@@ -18,9 +18,12 @@ app.use('/users' , userRoute)
  
 app.use('/image' , imageRoute)
 require('dotenv').config();
+const uri = process.env.ATLAS_URI;
 
 if (process.env.NODE_ENV === 'production') {
-	app.use(express.static('client/build'));
+  app.use(express.static('client/build'));
+  uri = process.env.ATLAS_URI;
+
 }
 
 app.use(express.static(path.join(__dirname, 'build')));
@@ -32,11 +35,7 @@ app.get('/*', (req, res) => {
 app.use(express.urlencoded({ extended: true }));
 
 
-
-const uri = "test";
-if (process.env.NODE_ENV === 'production') {
-  uri = process.env.ATLAS_URI;
-}
+ 
   mongoose.connect(uri , {useNewUrlParser: true , useCreateIndex: true});
   const connection = mongoose.connection
   connection.once("open",()=>{
