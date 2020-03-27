@@ -33,7 +33,10 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
-const uri = process.env.ATLAS_URI;
+const uri = "test";
+if (process.env.NODE_ENV === 'production') {
+  uri = process.env.ATLAS_URI;
+}
   mongoose.connect(uri , {useNewUrlParser: true , useCreateIndex: true});
   const connection = mongoose.connection
   connection.once("open",()=>{

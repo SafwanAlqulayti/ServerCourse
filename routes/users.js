@@ -20,20 +20,20 @@ const jwt = require('jsonwebtoken');
 // }
 
 //   })
-router.post('/',(req,res)=>{// sign up
+router.post('/',  (req,res)=>{// sign up
     console.log("post working")
     User.find({email: req.body.email} )
     .then(user=>{
-        if(user.length  == 0){//true  , prevent email duplication
+          if(user.length  == 0){//true  , prevent email duplication
             const hashedPassword =  bcrypt.hash(req.body.password , 10) //10 for salt
             .then((hash)=> {console.log(hash)
 
                 User.create({username: req.body.username,
                 email: req.body.email,
                 password: hash ,
-                role: req.body.role ,
-                teaching: req.body.teaching ,
-                img: req.body.img
+                role: req.body.role 
+                // teaching: req.body.teaching 
+                // img: req.body.img
                 
         }).then((newuser)=> {
             res.json({msg:"User has created" ,newuser})
