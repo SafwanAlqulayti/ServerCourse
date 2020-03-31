@@ -19,38 +19,37 @@ app.use('/users' , userRoute)
 app.use('/image' , imageRoute)
 require('dotenv').config();
 const uri = process.env.ATLAS_URI;
-
-if (process.env.NODE_ENV === 'production') {
+ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
-  uri = process.env.ATLAS_URI;
+  // uri = process.env.ATLAS_URI;
 
 }
 
-app.use(express.static(path.join(__dirname, 'build')));
+// app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+// app.get('/*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
 
-app.use(express.urlencoded({ extended: true }));
-
-
- 
-  mongoose.connect(uri , {useNewUrlParser: true , useCreateIndex: true});
-  const connection = mongoose.connection
-  connection.once("open",()=>{
-    console.log("Mongo db connection is working ")
-  })
+// app.use(express.urlencoded({ extended: true }));
 
 
  
-// const db = require("./config/db")
+  // mongoose.connect(uri , {useNewUrlParser: true , useCreateIndex: true});
+  // const connection = mongoose.connection
+  // connection.once("open",()=>{
+  //   console.log("Mongo db connection is working ")
+  // })
+
+
  
-// mongoose.connect(db ,{useNewUrlParser:true});
-// mongoose.connection.once('open',function(){
-//    console.log(`connected to mongo${db}`)
+const db = require("./config/db")
+ 
+mongoose.connect(db ,{useNewUrlParser:true});
+mongoose.connection.once('open',function(){
+   console.log(`connected to mongo${db}`)
    
-// })
+})
 
 //app.use() midle were to chech the user loging status
 
